@@ -1,0 +1,156 @@
+@import url('https://fonts.cdnfonts.com/css/rotondac');
+
+@import './reset';
+@import './variables';
+@import './mixins';
+
+body {
+    font-family: 'RotondaC', sans-serif;
+}
+
+body ::selection {
+    color: $clr-white;
+    background: $clr-primary;
+}
+
+.container {
+    width: 100%;
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.spacer-sm {
+    height: 50px;
+}
+
+.spacer-xs {
+    height: 35px;
+}
+
+.spacer-lg {
+    height: 90px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.row {
+    @include flex-row();
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+//title
+
+.title-decor {
+    display: inline-block;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -30px;
+        left: -50px;
+        width: 64px;
+        height: 54px;
+        background: url('./../../../assets/title-decor.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+}
+
+.title {
+    font-weight: 600;
+    color: $clr-black;
+}
+
+h1,
+.h1 {
+    font-size: 48px;
+    line-height: 1.2em;
+}
+
+h2,
+.h2 {
+    font-size: 40px;
+    line-height: 1.2em;
+}
+
+//media
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+
+    .container {
+        max-width: 960px;
+    }
+
+    .col-lg-10 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: 83.33333333%;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .container {
+        max-width: 1140px;
+    }
+
+    .col-xl-8 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: 66.66666667%;
+    }
+}
+
+@media (min-width: 1400px) {
+
+    .container {
+        max-width: 1320px;
+    }
+
+    .col-xxl-6 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}
+
+@media (max-width: 1730px) {
+
+    h1,
+    .h1 {
+        font-size: 40px;
+    }
+
+    h2,
+    .h2 {
+        font-size: 34px;
+    }
+}
