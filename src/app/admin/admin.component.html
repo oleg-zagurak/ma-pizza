@@ -1,10 +1,4 @@
 <section class="section cabinet-section">
-    <!-- <img class="decor-img rellax" data-rellax-speed="-1"
-        src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/decor-img-6.svg" alt=""
-        style="top: 0px; left: -40px; transform: translate3d(0px, -6px, 0px);">
-    <img class="decor-img rellax" data-rellax-speed="-1"
-        src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/decor-img-5.svg" alt=""
-        style="bottom: 8%; right: -40px; transform: translate3d(0px, -94px, 0px);"> -->
     <div class="spacer-sm"></div>
     <div class="container">
         <div class="row justify-content-center">
@@ -13,17 +7,17 @@
             </div>
         </div>
         <div class="spacer-xs"></div>
-
-        <div class="categories-menu">
-            <div class="category-title">Акції</div>
+        <div class="categories-menu" #container  (click)="menuSwitcher(container)">
+            <div class="category-title">{{title}}</div>
             <ul class="categories-list">
-                <li class="categories-list-item"><a routerLink="actions">Акції</a></li>
-                <li class="categories-list-item"><a routerLink="orders">Замовленя</a></li>
-                <li class="categories-list-item"><a routerLink="products">Товари</a></li>
-                <li class="categories-list-item"><a routerLink="topings">Топінги</a></li>
-                <li class="categories-list-item"><a routerLink="vacancy">Вакансії</a></li>
-                <li class="categories-list-item"><a routerLink="news">Новини</a></li>
+                <li routerLinkActive="active" class="categories-list-item"><a routerLink="actions">Акції</a></li>
+                <li routerLinkActive="active" class="categories-list-item"><a routerLink="orders">Замовленя</a></li>
+                <li routerLinkActive="active" class="categories-list-item"><a routerLink="products">Товари</a></li>
+                <li routerLinkActive="active" class="categories-list-item"><a routerLink="topings">Топінги</a></li>
+                <li routerLinkActive="active" class="categories-list-item"><a routerLink="vacancy">Вакансії</a></li>
+                <li routerLinkActive="active" class="categories-list-item"><a routerLink="news">Новини</a></li>
             </ul>
         </div>
+        <router-outlet></router-outlet>
     </div>
 </section>
