@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AdminActionsRoutingModule } from './actions-routing.module';
 import { AdminActionsComponent } from './actions.component';
+import { SharedModule } from 'src/app/shared/module/shared.module';
 
 
 
 @NgModule({
   declarations: [AdminActionsComponent],
   imports: [
-    CommonModule,
-    AdminActionsRoutingModule
+    AdminActionsRoutingModule,
+    SharedModule
   ]
 })
 export class AdminActionsModule { }

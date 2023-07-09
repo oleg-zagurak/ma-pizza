@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AdminTopingsComponent } from './topings.component';
 import { AdminTopingsRoutingModule } from './topings-router.module';
+import { SharedModule } from 'src/app/shared/module/shared.module';
 
 
 
@@ -10,7 +10,7 @@ import { AdminTopingsRoutingModule } from './topings-router.module';
     AdminTopingsComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     AdminTopingsRoutingModule
   ]
 })
