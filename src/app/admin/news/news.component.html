@@ -1,1 +1,138 @@
-<p>news works!</p>
+<div class="row justify-content-center">
+    <button class="btn btn-primary btn-block" type="button" (click)="showForm()" [class.disabled]="editable">
+        <span>{{formOpened ? 'Закрити' : 'Створити новину'}}</span>
+    </button>
+    <form [formGroup]="mainForm" class="form" *ngIf="formOpened">
+        <div class="row">
+            <input type="text" class="input" name="title" placeholder="*Введіть назву(основний заголовок)"
+                formControlName="title">
+        </div>
+        <div class="row">
+            <ng-container *ngIf="!isUploaded">
+                <div class="file-block">
+                    <input type="file" name="image" class="input" (change)="upload($event)" accept="image/*">
+                    <div class="progress" [style.width.%]="progress"></div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="isUploaded">
+                <div class="preview">
+                    <img [src]="getByMainForm('titleImage')" alt="">
+                    <button type="button" class="btn btn-secondary" (click)="deleteImg()">Видалити</button>
+                </div>
+            </ng-container>
+        </div>
+        <div class="buttons row">
+            <button type="button" class="btn btn-primary" (click)="addElement('p')">Абзац</button>
+            <button type="button" class="btn btn-primary" (click)="addElement('h2')">Заголовок</button>
+            <button type="button" class="btn btn-primary" (click)="addElement('h3')">Підзаголовок</button>
+            <button type="button" class="btn btn-primary" (click)="addElement('ol')">Нумерований список</button>
+            <button type="button" class="btn btn-primary" (click)="addElement('ul')">Маркований список</button>
+            <button type="button" class="btn btn-primary" (click)="addElement('li')">Елемент списку</button>
+            <button type="button" class="btn btn-primary" (click)="addElement('b')">Виділений текст</button>
+            <button type="button" class="btn btn-primary" (click)="showModal(true)">Посилання</button>
+            <button type="button" class="btn btn-primary" (click)="showModal(false)">Картинка</button>
+        </div>
+        <div class="row">
+            <textarea type="text" name="content" class="input textarea"
+                placeholder="*Введіть контент використовуючи потрібні елементи зверху(кнопки) і наповніть їх"
+                formControlName="content" #area></textarea>
+        </div>
+        <div class="row">
+            <button *ngIf="!editable" type="button" class="btn btn-primary btn-block"
+                [class.disabled]="mainForm.invalid" (click)="addNews()">Додати</button>
+                <button *ngIf="editable" type="button" class="btn btn-primary btn-block"
+                [class.disabled]="mainForm.invalid" (click)="updateNews()">Зберегти</button>
+        </div>
+    </form>
+    <div class="col-lg-10 col-xl-8" *ngIf="formOpened">
+        <h2 class="text-center">Прев'ю</h2>
+        <div class="content-preview text text-lg" [innerHTML]="content"></div>
+        <div class="spacer-lg"></div>
+    </div>
+</div>
+<div class="table">
+    <div class="table-row table-head">
+        <div class="hcell cell">№</div>
+        <div class="hcell cell">Назва</div>
+        <div class="hcell cell">Опис</div>
+        <div class="hcell cell">Картинка</div>
+        <div class="hcell cell">Дії</div>
+    </div>
+    <div class="table-row" *ngFor="let aNews of news; let i = index">
+        <div class="cell">
+            <div class="cell-head">№</div>
+            <div class="cell-block">{{i + 1}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Назва</div>
+            <div class="cell-block">{{aNews.title}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Опис</div>
+            <div class="cell-block">
+                {{aNews.content | slice:0:70}}
+                {{aNews.content.length > 70 ? '...' : ''}}
+            </div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Картинка</div>
+            <div class="cell-block">
+                <img class="img" [src]="aNews.titleImage" alt="">
+            </div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Дії</div>
+            <div class="cell-block btn-cell">
+                <button class="btn btn-secondary" (click)="editNews(i)">Редагувати</button>
+                <button class="btn btn-secondary" (click)="deleteNews(aNews.id)"
+                    [disabled]="editable">Видалити</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spacer-xs"></div>
+<div class="wrapper" *ngIf="modalOpened">
+    <div class="modal">
+        <form class="form-cabinet" id="actions-form" [formGroup]="anchorForm" *ngIf="anchorModal">
+            <div class="form-group">
+                <div class="row">
+                    <input type="text" class="input" name="url" placeholder="*Введіть адресу посилання"
+                        formControlName="url">
+                </div>
+                <div class="row">
+                    <input type="text" class="input" name="title" placeholder="*Введіть текст посилання"
+                        formControlName="title">
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-primary btn-block" [class.disabled]="anchorForm.invalid"
+                        (click)="addEnchor()">Додати</button>
+                    <button type="button" class="btn btn-primary btn-block" (click)="close()">Закрити</button>
+                </div>
+            </div>
+        </form>
+        <form class="form-cabinet" id="actions-form" [formGroup]="anchorForm" *ngIf="imageModal">
+            <div class="form-group">
+                <div class="row">
+                    <ng-container *ngIf="!isUploadedModal">
+                        <div class="file-block">
+                            <input type="file" name="image" class="input" (change)="upload($event)" accept="image/*">
+                            <div class="progress" [style.width.%]="progressModal"></div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="isUploadedModal">
+                        <div class="preview">
+                            <img [src]="getByImageForm()" alt="">
+                            <button type="button" class="btn btn-secondary" (click)="deleteImg()">Видалити</button>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-primary btn-block" [class.disabled]="imageForm.invalid"
+                        (click)="addImage()">Додати</button>
+                    <button type="button" class="btn btn-primary btn-block" (click)="close()"
+                        [class.disabled]="!imageForm.invalid">Закрити</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
