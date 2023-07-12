@@ -11,7 +11,15 @@ export const environment = {
     authDomain: 'ma-pizza.firebaseapp.com',
     messagingSenderId: '162822908688',
   },
-  production: false
+  production: false,
+  api: {
+    actions: 'actions',
+    news: 'news',
+    topings: 'topings',
+    products: 'products',
+    vacancies: 'vacancies',
+    orders: 'orders'
+  }
 };
 
 /*
