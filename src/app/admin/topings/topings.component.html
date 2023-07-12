@@ -1,1 +1,89 @@
-<p>topings works!</p>
+<div class="row justify-content-center">
+    <div class="col-lg-10 col-xl-8 col-xxl-6">
+        <button class="btn btn-primary btn-block" type="button" (click)="show()" [class.disabled]="editable">
+            <span>{{formOpened ? 'Закрити' : 'Додати топінг'}}</span>
+        </button>
+        <form class="form-cabinet" id="actions-form" [formGroup]="topingsForm" [ngClass]="formOpened ? 'open' : ''">
+            <div class="form-group">
+                <div class="row">
+                    <input type="text" class="input" name="name" placeholder="*Назва" formControlName="name">
+                </div>
+                <div class="row devide">
+                    <div class="col-sm-6">
+                        <input type="text" class="input" name="weight" placeholder="*Вага" formControlName="weight">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="number" class="input" name="price" placeholder="*Ціна" formControlName="price">
+                    </div>
+                </div>
+                <div class="row">
+                    <ng-container *ngIf="!isUploaded">
+                        <div class="file-block">
+                            <input type="file" name="image" class="input" (change)="upload($event)" accept="image/*">
+                            <div class="progress" [style.width.%]="progress"></div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="isUploaded">
+                        <div class="preview">
+                            <img [src]="getByControl('imagePath')" alt="">
+                            <button type="button" class="btn btn-secondary" (click)="deleteImg()">Видалити</button>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="row">
+                    <button *ngIf="!editable" type="button" class="btn btn-primary btn-block"
+                        [class.disabled]="topingsForm.invalid" (click)="addToping()">Додати</button>
+                    <button *ngIf="editable" type="button" class="btn btn-secondary btn-block"
+                        [class.disabled]="topingsForm.invalid" (click)="update()">Зберегти</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="table">
+    <div class="table-row table-head">
+        <div class="hcell cell">№</div>
+        <div class="hcell cell">Назва</div>
+        <div class="hcell cell">Вага</div>
+        <div class="hcell cell">Ціна</div>
+        <div class="hcell cell">Картинка</div>
+        <div class="hcell cell">Дії</div>
+    </div>
+    <div class="table-row" *ngFor="let toping of topings; let i = index">
+        <div class="cell">
+            <div class="cell-head">№</div>
+            <div class="cell-block">{{i + 1}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Назва</div>
+            <div class="cell-block">{{toping.name}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Вага</div>
+            <div class="cell-block">
+                {{toping.weight}}
+            </div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Ціна</div>
+            <div class="cell-block">
+                {{toping.price}}
+            </div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Картинка</div>
+            <div class="cell-block">
+                <img class="img" [src]="toping.imagePath" alt="">
+            </div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Дії</div>
+            <div class="cell-block btn-cell">
+                <button class="btn btn-secondary" (click)="editToping(i)">Редагувати</button>
+                <button class="btn btn-secondary" (click)="deleteToping(toping.id)"
+                    [disabled]="editable">Видалити</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spacer-xs"></div>
