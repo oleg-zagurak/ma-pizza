@@ -1,1 +1,109 @@
-<p>actions works!</p>
+<div class="row justify-content-center">
+    <div class="col-lg-10 col-xl-8 col-xxl-6">
+        <button class="btn btn-primary btn-block" type="button" (click)="show()" [class.disabled]="editable">
+            <span>{{formOpened ? 'Закрити' : 'Додати акцію'}}</span>
+        </button>
+        <form class="form-cabinet" id="actions-form" [formGroup]="actionsForm" [ngClass]="formOpened ? 'open' : ''">
+            <div class="form-group">
+                <div class="row">
+                    <input type="text" class="input" name="name" placeholder="*Назва акції" formControlName="name">
+                </div>
+                <div class="row">
+                    <textarea type="text" name="shirtDescription" class="input textarea"
+                        placeholder="*Введіть короткий опис (кожен абзац розділений тегом </br>)"
+                        formControlName="shortDescription"></textarea>
+                </div>
+                <div class="row">
+                    <textarea type="text" name="description" class="input textarea"
+                        placeholder="*Введіть повний опис (кожен абзац розділений тегом </br>)"
+                        formControlName="description"></textarea>
+                </div>
+                <div class="row">
+                    <label class="checkbox-entry">
+                        <input type="checkbox" name="forCarousel" formControlName="forCarousel">
+                        <span>
+                            Показувати на головній сторінці (слайдер)
+                        </span>
+                    </label>
+                </div>
+                <div class="row">
+                    <label class="checkbox-entry">
+                        <input type="checkbox" name="forActions" formControlName="forActions">
+                        <span>
+                            Показувати на сторінці акцій
+                        </span>
+                    </label>
+                </div>
+                <div class="row">
+                    <ng-container *ngIf="!isUploaded">
+                        <div class="file-block">
+                            <input type="file" name="image" class="input" (change)="upload($event)" accept="image/*">
+                            <div class="progress" [style.width.%]="progress"></div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="isUploaded">
+                        <div class="preview">
+                            <img [src]="getByControl('imagePath')" alt="">
+                            <button type="button" class="btn btn-secondary" (click)="deleteImg()">Видалити</button>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="row">
+                    <button *ngIf="!editable" type="button" class="btn btn-primary btn-block"
+                        [class.disabled]="actionsForm.invalid || invalid" (click)="addAction()">Додати</button>
+                    <button *ngIf="editable" type="button" class="btn btn-secondary btn-block"
+                        [class.disabled]="actionsForm.invalid || invalid" (click)="update()">Зберегти</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="table">
+    <div class="table-row table-head">
+        <div class="hcell cell">№</div>
+        <div class="hcell cell">Назва</div>
+        <div class="hcell cell">Короткий опис</div>
+        <div class="hcell cell">Повний опис</div>
+        <div class="hcell cell">Картинка</div>
+        <div class="hcell cell">Дії</div>
+    </div>
+    <div class="table-row" *ngFor="let action of actions; let i = index">
+        <div class="cell">
+            <div class="cell-head">№</div>
+            <div class="cell-block">{{i + 1}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Назва</div>
+            <div class="cell-block">{{action.name}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Короткий опис</div>
+            <div class="cell-block">
+                {{action.shortDescription | slice:0:70}}
+                {{action.shortDescription.length > 70 ? '...' : ''}}
+            </div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Повний опис</div>
+            <div class="cell-block">
+                {{action.description | slice:0:70}}
+                {{action.shortDescription.length > 70 ? '...' : ''}}
+            </div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Картинка</div>
+            <div class="cell-block">
+                <img class="img" [src]="action.imagePath" alt="">
+            </div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Дії</div>
+            <div class="cell-block btn-cell">
+                <button class="btn btn-secondary" (click)="editAction(i)">Редагувати</button>
+                <button class="btn btn-secondary" (click)="deleteAction(action.id)"
+                    [disabled]="editable">Видалити</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spacer-xs"></div>
