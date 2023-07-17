@@ -82,18 +82,21 @@
     z-index: 10;
 }
 
-.prom-detail-section, .promotions {
+.prom-detail-section,
+.promotions {
     position: relative;
     overflow: hidden;
 }
 
-.prom-detail-section .decor-img, .promotions .decor-img {
+.prom-detail-section .decor-img,
+.promotions .decor-img {
     position: absolute;
     max-width: 230px;
     max-height: 230px;
 }
 
-.text p, .text a {
+.text p,
+.text a {
     position: relative;
 }
 
@@ -114,5 +117,42 @@
 @media (min-width: 992px) {
     .banner-info>* {
         color: $clr-white;
+    }
+}
+
+@media (max-width: 1400px) {
+    .banner-align {
+        height: 320px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .breadcrumbs {
+        margin: 50px 0 20px;
+    }
+
+    .prom-detail-section .decor-img,
+    .promotions .decor-img {
+        display: none;
+    }
+
+}
+
+@media (max-width: 991px) {
+    .banner-align {
+        height: auto;
+        padding: 15px 0;
+    }
+
+    .bg.desktop, .opacity {
+        display: none;
+    }
+
+    .breadcrumbs {
+        display: none;
+    }
+
+    .banner-info {
+        margin-top: 20px;
     }
 }
