@@ -1,0 +1,42 @@
+<div class="section promotions">
+    <img class="decor-img rellax" data-rellax-speed="-1"
+        src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/decor-img-5.svg" alt=""
+        style="top: 45%; left: -40px; transform: translate3d(0px, -68px, 0px) scaleX(-1);">
+    <img class="decor-img rellax" data-rellax-speed="-1"
+        src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/decor-img-7.svg" alt=""
+        style="top: 65%; right: -40px; transform: translate3d(0px, -130px, 0px);">
+    <div class="spacer-sm"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-10 text-center">
+                <div class="title title-decor h2">
+                    <span>Новини</span>
+                </div>
+            </div>
+            <div class="spacer-sm"></div>
+        </div>
+        <div class="row news-row promotions justify-content-center no-reverse">
+            <div class="col-12 col-xl-10" *ngFor="let aNew of news">
+                <div class="news-item">
+                    <a class="news-img " [routerLink]="['/news', aNew.id]">
+                        <img [src]="aNew.titleImage" alt="">
+                    </a>
+                    <div class="news-content">
+                        <div class="title h3 text-cut-3">
+                            <a [routerLink]="['/news', aNew.id]">
+                                {{aNew.title}} </a>
+                        </div>
+                        <div class="text text-cut-5">
+                            <p [innerHTML]="aNew.content | slice:0:1000"></p>
+                        </div>
+                        <a [routerLink]="['/news', aNew.id]" class="btn-link">
+                            <span>Дізнатись більше</span>
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer-lg"></div>
+</div>
