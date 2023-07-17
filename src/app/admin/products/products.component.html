@@ -1,1 +1,142 @@
-<p>products works!</p>
+<div class="row justify-content-center">
+    <div class="col-lg-10 col-xl-8 col-xxl-6">
+        <div class="form-btn-block">
+            <button class="btn btn-primary btn-block" (click)="show()" [class.disabled]="editable">
+                {{formOpened ? 'Закрити' : 'Додати Продукт'}}</button>
+        </div>
+        <form [formGroup]="productForm" [ngClass]="formOpened ? 'open' : ''" class="form-cabinet">
+            <div class="form-group">
+                <div class="row">
+                    <select name="category" class="input" formControlName="category" [compareWith]="compareOptions"
+                        (change)="showSubCat()">
+                        <option [ngValue]="null" disabled>Виберіть категорію</option>
+                        <option ngValue="pizza">Піца</option>
+                        <option ngValue="salads">Салати</option>
+                        <option ngValue="desserts">Десерти</option>
+                        <option ngValue="drinks">Напої</option>
+                    </select>
+                </div>
+                <div class="row" *ngIf="showSubPizzaCategories">
+                    <select name="subcategory" class="input sub" formControlName="subcategory"
+                        [compareWith]="compareOptions" multiple size="5">
+                        <option [ngValue]="null" disabled>*Піца (для декількох утримуйте CTRL)</option>
+                        <option [ngValue]="0">Гостра</option>
+                        <option [ngValue]="1">М'ясо</option>
+                        <option [ngValue]="2">Овочі</option>
+                        <option [ngValue]="3">Морепродукти</option>
+                    </select>
+                </div>
+                <div class="row" *ngIf="showSubSaladsCategories">
+                    <select name="subcategory" class="input" formControlName="subcategory"
+                        [compareWith]="compareOptions" multiple size="3">
+                        <option [ngValue]="null" disabled>Виберіть підкатегорію салатів</option>
+                        <option [ngValue]="1">М'ясо</option>
+                        <option [ngValue]="3">Морепродукти</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <input type="text" class="input" formControlName="name" name="name" placeholder="*Назва">
+                </div>
+                <div class="row">
+                    <input type="text" class="input" formControlName="ingredients" name="ingredients"
+                        placeholder="*Інгредієнти">
+                </div>
+                <div class="row">
+                    <select name="recomendation" class="input multiple" formControlName="recomendation"
+                        [compareWith]="compareTopings" multiple>
+                        <option [ngValue]="null" disabled>Топінги (для декількох утримуйте CTRL)</option>
+                        <option [ngValue]="toping" *ngFor="let toping of topings;">
+                            {{toping?.name}}</option>
+                    </select>
+                </div>
+                <div class="row devide">
+                    <input type="text" class="input" formControlName="weight" name="name" placeholder="*Вага">
+                    <input type="number" class="input" formControlName="price" name="path" placeholder="*Ціна">
+                    <input type="number" class="input" formControlName="bonus" name="path" placeholder="*Бонус">
+                </div>
+                <div class="row">
+                    <ng-container *ngIf="!isUploaded">
+                        <div class="file-block">
+                            <input type="file" class="input" name="image" (change)="upload($event)" accept="image/*">
+                            <div class="progress" [style.width.%]="progress"></div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="isUploaded">
+                        <div class="preview">
+                            <img [src]="getByControl('imagePath')" alt="">
+                            <button type="button" class="btn btn-secondary" (click)="deleteImg()">Видалити</button>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="row">
+                    <input type="hidden" name="imagePath" formControlName="imagePath">
+                    <button *ngIf="!editable" type="button" class="btn btn-primary btn-block"
+                        [class.disabled]="productForm.invalid" (click)="addProduct()">Додати</button>
+                    <button *ngIf="editable" type="button" class="btn btn-primary btn-block"
+                        [class.disabled]="productForm.invalid" (click)="updateProduct()">Зберегти</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="table">
+    <div class="table-row table-head">
+        <div class="hcell cell">№</div>
+        <div class="hcell cell">Назва</div>
+        <div class="hcell cell">Вага</div>
+        <div class="hcell cell">Ціна</div>
+        <div class="hcell cell">Бонус</div>
+        <div class="hcell cell">Інгредієнти</div>
+        <div class="hcell cell">Картинка</div>
+        <div class="hcell cell">Дії</div>
+    </div>
+    <div class="table-row" *ngFor="let product of products; let i = index">
+        <div class="cell">
+            <div class="cell-head">№</div>
+            <div class="cell-block">{{i + 1}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Назва</div>
+            <div class="cell-block">{{product.name}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Вага</div>
+            <div class="cell-block">
+                {{product.weight}}
+            </div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Ціна</div>
+            <div class="cell-block">
+                {{product.price}}
+            </div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Бонус</div>
+            <div class="cell-block">
+                {{product.bonus + ' грн'}}
+            </div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Інгредієнти</div>
+            <div class="cell-block">
+                {{product.ingredients}}
+            </div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Картинка</div>
+            <div class="cell-block">
+                <img class="img" [src]="product.imagePath" alt="">
+            </div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Дії</div>
+            <div class="cell-block btn-cell">
+                <button class="btn btn-secondary" (click)="editProduct(i)">Редагувати</button>
+                <button class="btn btn-secondary" (click)="deleteProduct(product.id)"
+                    [disabled]="editable">Видалити</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spacer-xs"></div>

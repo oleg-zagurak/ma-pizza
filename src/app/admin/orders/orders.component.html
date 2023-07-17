@@ -1,1 +1,80 @@
-<p>orders works!</p>
+<div class="table" *ngFor="let order of orders; let i = index">
+    <div class="row">
+        <div class="cell">
+            <div class="cell-head">Ім'я</div>
+            <div class="cell-block">{{order.name}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Телефон</div>
+            <div class="cell-block">{{order.tel}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Пошта</div>
+            <div class="cell-block">
+                {{order.email}}
+            </div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Адреса</div>
+            <div class="cell-block">
+                {{order.address}}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell">
+            <div class="cell-head">Тип доставки</div>
+            <div class="cell-block">{{order.deliveryType}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Час доставки</div>
+            <div class="cell-block">{{order.deliveryTime}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Спосіб оплати</div>
+            <div class="cell-block">{{order.payment}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Решта</div>
+            <div class="cell-block">{{order.rest}}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell tel">
+            <div class="cell-head">Зателефонувати</div>
+            <div class="cell-block">{{order.recall  ? 'Так' : 'Ні'}}</div>
+        </div>
+        <div class="cell comment">
+            <div class="cell-head">Коментар</div>
+            <div class="cell-block">{{order.comment}}</div>
+        </div>
+    </div>
+    <div class="row" *ngFor="let product of order.products">
+        <div class="cell">
+            <div class="cell-head">Назва Товару</div>
+            <div class="cell-block">{{product.name}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Кількість</div>
+            <div class="cell-block">{{product.count}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Топінги</div>
+            <div class="cell-block">{{product.topings ? getTopName(product) : 'Пусто'}}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell">
+            <div class="cell-head">Номер та статус замовлення</div>
+            <div class="cell-block pending" [class.success]="order.status">№{{order.number}} / {{ order.status ? 'виконано' : 'в процесі'}}</div>
+        </div>
+        <div class="cell">
+            <div class="cell-head">Дії</div>
+            <div class="cell-block btn-cell">
+                <button class="btn btn-secondary" (click)="done(order)" *ngIf="!order.status">Виконати</button>
+                <button class="btn btn-secondary" (click)="delete(order)">Видалити</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spacer-xs"></div>

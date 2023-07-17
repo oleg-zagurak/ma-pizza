@@ -1,0 +1,110 @@
+@import './../../shared/styles/variables';
+@import './../../shared/styles/mixins';
+
+.table {
+    width: 100%;
+    @include flex-col();
+    margin: 20px 0;
+    border: 2px solid $clr-secondary;
+    border-radius: 15px;
+    overflow: hidden;
+
+    & .row{
+        padding: 15px;
+        border-bottom: 2px solid $clr-fourth;
+
+        &:last-child{
+            border-bottom: none;
+        }
+    }
+
+    & .cell{
+        border-right: 2px solid $clr-fourth;
+
+        &:last-child{
+            border-right: none;
+        }
+
+        &.tel{
+            max-width: 25%;
+        }
+
+        &.comment{
+            max-width: 75%;
+        }
+    }
+}
+
+.pending{
+    color: orange;
+}
+.pending.success{
+    color: $clr-primary;
+}
+
+.hcell {
+    font-weight: 700;
+}
+
+.cell {
+    text-align: center;
+    padding: 0 5px;
+    @include flex-col();
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+
+    & .img {
+        width: 100%;
+        max-height: 60px;
+        min-height: 100%;
+    }
+
+    &>button {
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+.cell-head {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.btn-cell {
+    @include flex-row();
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width: 992px) {
+    .table .row{
+        padding: 0 15px;
+        flex-direction: column;
+    }
+
+    .table .cell{
+        border-bottom: 2px solid $clr-fourth;
+        border-right: none;
+        padding: 10px 5px;
+
+        &:last-child{
+            border-bottom: none;
+        }
+        &.tel, &.comment{
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+
+    .row>* {
+        width: 100%;
+    }
+
+    .cell-head {
+        margin-bottom: 15px;
+    }
+}

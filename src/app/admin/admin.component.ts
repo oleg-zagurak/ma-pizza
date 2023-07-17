@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from '../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -9,7 +10,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
   @ViewChild('container', { static: true }) container!: ElementRef<HTMLDivElement>;
   public once = true;
   public title = '';
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -31,5 +32,9 @@ export class AdminComponent implements OnInit, AfterViewInit {
       }, 0)
     }
     this.once = false;
+  }
+
+  logout(): void {
+    this.auth.logout();
   }
 }

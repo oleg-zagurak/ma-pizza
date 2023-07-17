@@ -35,4 +35,9 @@ export class DbDataService {
     const q = query(collection(this.store, apiPath), where('userId', '==', `${id}`))
     return collectionData( q, { idField: 'id' } );
   }
+
+  getActions(apiPath: string, type: string): Observable<DocumentData[]>{
+    const q = query(collection(this.store, apiPath), where(`${type}`, '==', true))
+    return collectionData( q, { idField: 'id' } );
+  }
 }

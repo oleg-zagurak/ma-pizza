@@ -11,6 +11,10 @@
     background-color: $clr-white;
 }
 
+.title{
+    position: relative;
+}
+
 .categories-menu {
     position: relative;
     text-align: center;
@@ -55,6 +59,44 @@
     background-color: $clr-secondary;
     color: $clr-white;
 }
+
+//logout
+.exit{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -120%);
+}
+
+.exit a {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5em;
+    color: $clr-black;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.exit a svg {
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+}
+
+.exit a svg path {
+    fill: $clr-black;
+    -webkit-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+//media
 
 @media (max-width: 1000px) {
     .category-title {
