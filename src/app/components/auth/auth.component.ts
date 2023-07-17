@@ -33,14 +33,14 @@ export class AuthComponent implements OnInit {
         if (localStorage.getItem('currentUser')) {
           this.user = JSON.parse(localStorage.getItem('currentUser') as string)
         }
+        if (this.user && this.isLogged) {
+          this.name = `${this.user.name} ${this.user.surname}`;
+        }
       } else {
         this.resetOnLogout();
         location.reload()
       }
     })
-    if (this.user && this.isLogged) {
-      this.name = `${this.user.name} ${this.user.surname}`;
-    }
   }
 
   logout(): void {
