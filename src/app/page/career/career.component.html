@@ -1,0 +1,102 @@
+<div class="section">
+    <div class="spacer-sm spacer-mobile-off"></div>
+    <div class="container banner">
+        <div class="banner-align">
+            <div class="parallax-bg">
+                <div class="bg desktop rellax" data-rellax-speed="-.6"
+                    style="background-image: url(&quot;https://mapizza.com.ua/wp-content/uploads/2022/03/job-1.png.webp&quot;); transform: translate3d(0px, -10px, 0px);">
+                </div>
+                <div class="bg mobile"
+                    style="background-image: url(https://mapizza.com.ua/wp-content/uploads/2022/03/job-1.png.webp);">
+                </div>
+            </div>
+            <div class="opacity"></div>
+            <div class="row justify-content-center ">
+                <div class="col-lg-10 col-xl-8">
+                    <div class="banner-info">
+                        <h1 class="h2 title text-center">
+                            Вакансії</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer-lg"></div>
+</div>
+<div class="section vacancy">
+    <img class="decor-img rellax" data-rellax-speed="-1"
+        src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/decor-img-5.svg" alt=""
+        style="top: 20px; left: -40px; transform: translate3d(0px, -21px, 0px) scaleX(-1);">
+    <img class="decor-img rellax" data-rellax-speed="-1"
+        src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/decor-img-6.svg" alt=""
+        style="bottom: 18%; right: -40px; transform: translate3d(0px, -138px, 0px) scaleX(-1);">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="title title-decor h2">
+                    <span>Наші вакансії</span>
+                </div>
+            </div>
+            <div class="spacer-xs"></div>
+        </div>
+        <div class="row advantages-row hide-on-mobile justify-content-center">
+            <div class="col-xl-3 col-sm-6">
+                <div class="benefits-item type-2">
+                    <div class="benefits-img">
+                        <img src="https://mapizza.com.ua/wp-content/uploads/2021/09/benefits-img-1.svg"
+                            alt="https://mapizza.com.ua/wp-content/uploads/2021/09/benefits-img-1.svg">
+                    </div>
+                    <div class="title h5">
+                        Чудовий старт кар’єри</div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="benefits-item type-2">
+                    <div class="benefits-img">
+                        <img src="https://mapizza.com.ua/wp-content/uploads/2021/09/benefits-img-2.svg"
+                            alt="https://mapizza.com.ua/wp-content/uploads/2021/09/benefits-img-2.svg">
+                    </div>
+                    <div class="title h5">
+                        Контакти</div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="benefits-item type-2">
+                    <div class="benefits-img">
+                        <img src="https://mapizza.com.ua/wp-content/uploads/2021/09/benefits-img-3.svg"
+                            alt="https://mapizza.com.ua/wp-content/uploads/2021/09/benefits-img-3.svg">
+                    </div>
+                    <div class="title h5">
+                        Гнучкий графік роботи</div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="benefits-item type-2">
+                    <div class="benefits-img">
+                        <img src="https://mapizza.com.ua/wp-content/uploads/2021/09/benefits-img-4.svg"
+                            alt="https://mapizza.com.ua/wp-content/uploads/2021/09/benefits-img-4.svg">
+                    </div>
+                    <div class="title h5">
+                        Регулярні виплати</div>
+                </div>
+            </div>
+        </div>
+        <div class="row vacancy-row">
+            <div class="col-12 col-md-6" *ngFor="let vacancy of vacancies">
+                <div class="vacancy-item">
+                    <a class="vacancy-img" [routerLink]="['/vacancy', vacancy.id]">
+                        <img [src]="vacancy.imagePath" alt="">
+                    </a>
+                    <div class="title h5 text-cut-2">
+                        <a [routerLink]="['/vacancy', vacancy.id]">
+                            {{vacancy.title}} </a>
+                    </div>
+                    <div class="text text-cut-2">
+                        <p [innerHTML]="vacancy.description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer-lg"></div>
+</div>
