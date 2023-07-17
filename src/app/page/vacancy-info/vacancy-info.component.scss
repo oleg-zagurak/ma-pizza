@@ -1,0 +1,338 @@
+@import '../../shared/styles/variables';
+
+
+.section {
+    position: relative;
+    overflow: hidden;
+}
+
+.breadcrumbs {
+    margin: 10px 0;
+}
+
+.breadcrumbs li {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.6em;
+
+    &:last-child::after {
+        display: none;
+    }
+}
+
+.breadcrumbs li:after {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: $clr-primary;
+    margin: 2px 15px;
+    -webkit-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+.breadcrumbs span {
+    color: $clr-black;
+    -webkit-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+.prom-detail-section,
+.promotions {
+    position: relative;
+}
+
+.prom-detail-section .decor-img,
+.promotions .decor-img {
+    position: absolute;
+    max-width: 230px;
+    max-height: 230px;
+}
+
+[class*=spacer] {
+    clear: both;
+    width: 100% !important;
+}
+
+.row>* {
+    max-width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-top: 0;
+}
+
+.faq-form {
+    position: relative;
+    max-width: 680px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    background: $clr-white;
+    border: 1px solid #d1d9ce;
+    border-radius: 16px;
+    padding: 30px 40px 40px;
+}
+
+.b-shadow {
+    -webkit-box-shadow: 20px 20px 0px #f2faf2;
+    box-shadow: 20px 20px 0px #f2faf2;
+}
+
+.recruiter-wrap {
+    border-bottom: 1px solid #d1d9ce;
+    padding-bottom: 30px;
+    margin-bottom: 25px;
+}
+
+.recruiter {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.recruiter-img {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin-right: 16px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.recruiter-img img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.recruiter-info {
+    -moz-text-align-last: left;
+    text-align-last: left;
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
+    align-self: center;
+}
+
+.recruiter-info .caption {
+    color: $clr-grey;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4em;
+}
+
+a {
+    color: inherit;
+}
+
+.recruiter-info .title {
+    margin-bottom: 0;
+}
+
+.contact-item {
+    padding: 15px 0;
+}
+
+.contact-item:last-child {
+    padding-bottom: 0;
+}
+
+.contact-link {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.contact-link-img {
+    margin-right: 15px;
+}
+
+.contact-link-img img {
+    display: block;
+    width: 24px;
+    height: 24px;
+}
+
+.contact-link-info {
+    font-size: 16px;
+    line-height: 1.5em;
+    color: $clr-grey;
+}
+
+.contact-link+.contact-link {
+    margin-top: 15px;
+}
+
+.faq-form .title {
+    margin-bottom: 20px;
+}
+
+.screen-reader-response,
+.wpcf7-not-valid-tip,
+.wpcf7-response-output {
+    display: none !important;
+}
+
+.faq-form .input {
+    margin-bottom: 15px;
+}
+
+textarea.input {
+    height: 102px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    line-height: 1.5em;
+    resize: none;
+}
+
+.faq-form .input:last-of-type:is(textarea) {
+    margin-bottom: 25px;
+}
+
+.faq-btn-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.upload-wrapper {
+    position: relative;
+    font-size: 0;
+    display: inline-block;
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
+    align-self: center;
+    text-align: left;
+    padding: 0 35px;
+}
+
+.upload-wrapper input {
+    display: none;
+    padding: 0;
+}
+
+.upload-wrapper .file-name {
+    position: relative;
+    cursor: pointer;
+    z-index: 2;
+    display: block;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+    font-size: 16px;
+    line-height: 1.3em;
+    color: $clr-secondary;
+    font-weight: 400;
+    -webkit-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+.upload-icon {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.upload-wrapper .allowed {
+    font-size: 12px;
+    line-height: 1.3em;
+    color: $clr-grey;
+}
+
+.upload-wrapper .remove-file {
+    position: absolute;
+    cursor: pointer;
+    z-index: 5;
+    right: 0;
+    top: 10px;
+    width: 16px;
+    height: 16px;
+    display: none;
+}
+
+.btn svg {
+    margin-left: 15px;
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+//media
+
+@media (max-width: 1730px) and (min-width: 1400px) {
+    .faq-row .col-xxl-6 {
+        width: 58.33333333%;
+    }
+
+    .faq-row .col-xxl-4 {
+        width: 41.66666667%;
+    }
+}
+
+@media (max-width: 1400px) {
+    .faq-form {
+        padding: 20px 30px 30px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .faq-form {
+        margin-top: 40px;
+    }
+
+    .prom-detail-section .decor-img,
+    .promotions .decor-img {
+        display: none;
+    }
+
+    .faq-form {
+        margin-top: 40px;
+    }
+
+    .faq-row>* {
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .faq-form {
+        margin-top: 30px;
+    }
+
+    .b-shadow {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+}
+
+
+@media (max-width: 575px) {
+    .faq-btn-wrapper {
+        display: block;
+    }
+    .upload-wrapper {
+        width: 100%;
+    }
+    .upload-wrapper .file-name {
+        font-size: 14px;
+    }
+    .faq-btn-wrapper .btn {
+        margin: 15px 0 0;
+        width: 100%;
+    }
+}
