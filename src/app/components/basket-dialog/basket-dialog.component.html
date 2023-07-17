@@ -1,0 +1,63 @@
+<div class="bg-wrapper" [class.active]="modal" (click)="close($event)">
+    <div class="cart" [class.active]="modal">
+        <div class="cart_title">
+            <div class="h4 title title-decor">Кошик</div>
+        </div>
+        <div id="cart-popup-out" class="cart-popup-out">
+            <div class="cart_items" *ngIf="orders.length > 0 ? false : true">
+                <div class="cart-empty-message">
+                    <div class="title h5">Кошик порожній</div>
+                    <a class="btn btn-primary" routerLink="/">Перейти до каталогу</a>
+                </div>
+            </div>
+            <div class="cart_items" *ngIf="orders.length > 0 ? true : false">
+                <div class="prod_horiz js-product cart-product" *ngFor="let order of orders">
+                    <a class="prod_horiz-img" [routerLink]="['product', order.category, order.id]">
+                        <img class="img imgLoaded" [src]="order.imagePath">
+                    </a>
+                    <div class="prod_horiz-desc">
+                        <div class="prod-title-wrap">
+                            <a class="title h5" [routerLink]="['product', order.category, order.id]">{{order.name}}</a>
+                            <button class="btn-close remove-product" (click)="delete(order)"></button>
+                            <div class="added_ing-wrap" *ngIf="order.topings">
+                                <div class="ing_output-inner">
+                                    <div class="ing_control" *ngFor="let toping of order.topings">
+                                        <div class="ing_control-title">1 Х {{toping.name}}</div><button
+                                            class="cart-dropdown-delete" (click)="removeToping(order, toping)"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prod_horiz-controls">
+                            <div class="price_default">
+                                <b>{{order.price}}</b> грн
+                            </div>
+                            <div class="thumb-input-number">
+                                <button type="button" class="decrement in-cart"
+                                    (click)="setAmount(false, order)">-</button>
+                                <input class="product-qty" [value]="order.count" readonly="" tabindex="-1" max="999">
+                                <button type="button" class="increment in-cart"
+                                    (click)="setAmount(true, order)">+</button>
+                            </div>
+                            <div class="price-wrap">
+                                <b class="price">{{getPrice(order)}}</b> грн
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cart_bottom">
+                <div class="cart_bottom_flex">
+                    <div class="cart_price-wrap">
+                        Сума: <b id="card-total-price" class="card-total-price">{{totalPrice}}</b> грн </div>
+                    <a routerLink="/checkout" class="btn btn-primary" id="cart-submit"
+                        [class.disabled]="orders.length > 0 ? false : true" (click)="showModal()">Оформити замовлення</a>
+                </div>
+                <div class="cart_bonus-wrap">
+                    Нарахується бонусів: <b>{{totalBonus}}</b>
+                </div>
+            </div>
+        </div>
+        <button class="btn-close cart-close" (click)="showModal()"></button>
+    </div>
+</div>
