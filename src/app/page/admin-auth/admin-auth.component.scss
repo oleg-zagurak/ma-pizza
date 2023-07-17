@@ -1,0 +1,81 @@
+@import './../../shared/styles/variables';
+
+.bg-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    background-color: $clr-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+
+.popup-container.size-1 {
+    max-width: 560px;
+}
+
+.popup-container {
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    text-align: left;
+    background: $clr-white;
+    border-radius: 12px;
+}
+
+.popup-align {
+    padding: 40px;
+    overflow: hidden;
+}
+
+.popup-title.title-decor::before {
+    display: block;
+    top: 0;
+    left: -35px;
+    width: 30px;
+    height: 26px;
+}
+
+.popup-form:not(:first-child) {
+    margin-top: 20px;
+}
+
+.popup-form:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.popup-form {
+    text-align: left;
+}
+
+.popup-form>*+* {
+    margin-top: 15px;
+}
+
+.popup-links-wrapper div a {
+    color: $clr-secondary;
+    cursor: pointer;
+
+    &:hover {
+        color: $clr-primary;
+    }
+}
+
+.input-popup-wrapper>input {
+    background: 0 0;
+}
+
+.input-popup-wrapper>p {
+    color: $clr-grey;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 1.5em;
+}

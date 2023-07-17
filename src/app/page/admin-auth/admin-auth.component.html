@@ -1,0 +1,17 @@
+<div class="bg-wrapper">
+    <div class="popup-container size-1">
+        <div class="popup-align text-center">
+            <div class="popup-title title title-decor h4">Вхід</div>
+            <form class="form popup-form" id="login-form" [formGroup]="loginForm">
+                <input class="input" name="login" type="text" placeholder="*Введіть пошту" formControlName="email">
+                <input type="password" class="input" name="password" placeholder="*Введіть пароль"
+                    formControlName="password">
+                <button class="btn btn-primary btn-block" type="button" [class.disabled]="disabledOnLoad"
+                    (click)="loginUser()">
+                    <span>Увійти</span> <i></i>
+                </button>
+                <div class="error-message" *ngIf="authError">Помилка входу. Невідомий користувач.</div>
+            </form>
+        </div>
+    </div>
+</div>
