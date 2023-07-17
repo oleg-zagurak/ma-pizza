@@ -1,0 +1,75 @@
+<div class="popup-wrapper" [class.active]="modal">
+    <div class="bg-layer"></div>
+    <div class="bg-wrapper" [class.active]="modal && !register" (click)="close($event)">
+        <div class="layer-close"></div>
+        <div class="popup-container size-1" [class.active]="modal && !register">
+            <div class="popup-align text-center">
+                <div class="popup-title title title-decor h4">Вхід</div>
+                <form class="form popup-form" id="login-form" [formGroup]="loginForm">
+                    <input class="input" name="login" type="text" placeholder="*Введіть пошту" formControlName="email">
+                    <input type="password" class="input" name="password" placeholder="*Введіть пароль"
+                        formControlName="password">
+                    <button class="btn btn-primary btn-block" type="button" [class.disabled]="disabledOnLoad"
+                        (click)="loginUser()">
+                        <span>Увійти</span> <i></i>
+                    </button>
+                    <div class="error-message" *ngIf="authError">Помилка входу. Невідомий користувач.</div>
+                </form>
+                <div class="popup-links-wrapper">
+                    <div>Ще не зареєстровані? <a class="open-popup" (click)="showRegister()">Зареєструватися</a></div>
+                </div>
+            </div>
+            <button class="btn-close close-popup" (click)="showModal()"></button>
+        </div>
+    </div>
+    <div class="bg-wrapper" [class.active]="register" (click)="close($event)">
+        <div class="layer-close"></div>
+        <div class="popup-container size-1" [class.active]="register">
+            <div class="popup-align text-center">
+                <div class="popup-title title title-decor h4">Зареєструватися</div>
+                <form class="form popup-form" id="registration-form" [formGroup]="registerForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input class="input" type="text" name="first_name" placeholder="*Ваше ім'я"
+                                formControlName="name">
+                        </div>
+                        <div class="col-sm-6">
+                            <input class="input" type="text" name="last_name" placeholder="*Ваше прізвище"
+                                formControlName="surname">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-popup-wrapper">
+                                <input type="text" name="calendar" class="input birthday"
+                                    placeholder="Дата народження(дд.мм.рррр)" formControlName="birthday">
+                                <p>Якщо це поле не буде заповнено, то ви не зможете отримувати додаткові бонуси до Дня
+                                    Вашого народження</p>
+                            </div>
+                            <input type="email" name="email" class="input" placeholder="*Ваш емейл"
+                                formControlName="email">
+                            <input class="input inputmask" name="phone" type="text" placeholder="*Ваш телефон"
+                                formControlName="tel">
+                            <input class="input" type="text" name="password" placeholder="*Пароль"
+                                formControlName="password" (input)="checkPassword()">
+                            <input class="input" type="text" name="password2" placeholder="*Повторіть пароль"
+                                formControlName="passwordConfirmation" (input)="checkPassword()">
+                            <button class="btn btn-primary btn-block" type="button" [class.disabled]="disabledOnLoad"
+                                (click)="registerUser()">
+                                <span>Зареєструватись</span>
+                                <i></i>
+                            </button>
+                            <div class="error-message" *ngIf="authError">Помилка реєстрації. Перевірте правильність
+                                даних.</div>
+                            <div class="error-message" *ngIf="passwordError">Паролі не однакові.</div>
+                        </div>
+                    </div>
+                </form>
+                <div class="popup-links-wrapper justify-content-center">
+                    <div>Вже зареєстровані? <a class="open-popup" data-rel="1" (click)="showRegister()">Увійти</a></div>
+                </div>
+            </div>
+            <button class="btn-close close-popup" (click)="showModal()"></button>
+        </div>
+    </div>
+</div>

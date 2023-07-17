@@ -1,0 +1,253 @@
+@import './../../shared/styles/variables';
+@import './../../shared/styles/mixins';
+
+
+.user-cabinet {
+    position: relative;
+}
+
+.user-menu {
+    position: absolute;
+    z-index: 5;
+    right: 0;
+    top: 100%;
+    width: 256px;
+    padding: 15px;
+    background: $clr-white;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translateY(50px);
+    -ms-transform: translateY(50px);
+    transform: translateY(50px);
+    -webkit-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+.user-cabinet.open .user-menu {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translateY(10px);
+    -ms-transform: translateY(10px);
+    transform: translateY(10px);
+}
+
+.user-menu-list li + li {
+    margin-top: 15px;
+}
+
+.user-menu::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+}
+
+.user-menu::after {
+    content: '';
+    position: absolute;
+    top: -7px;
+    right: 40px;
+    width: 0;
+    height: 0;
+    border: 0 solid transparent;
+    border-right-width: 7px;
+    border-left-width: 7px;
+    border-bottom: 7px solid $clr-white;
+}
+
+.user-menu a {
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    color: $clr-grey;
+    -webkit-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+.user-name {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5em;
+    color: $clr-black;
+}
+
+.user-menu-list a {
+    display: block;
+    position: relative;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5em;
+}
+
+.user-menu-list {
+    margin: 15px 0;
+    padding: 15px 0;
+    border-top: 1px solid #d1d9ce;
+    border-bottom: 1px solid #d1d9ce;
+}
+
+.user-menu-list a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    border-right: 1px solid $clr-black;
+    border-bottom: 1px solid $clr-black;
+    -webkit-transform: translateY(-50%) rotate(-45deg);
+    -ms-transform: translateY(-50%) rotate(-45deg);
+    transform: translateY(-50%) rotate(-45deg);
+    -webkit-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+.exit a {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5em;
+    color: $clr-black;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.exit a svg {
+    width: 16px;
+    height: 16px;
+}
+
+.exit a svg path {
+    fill: $clr-black;
+    -webkit-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+.user-c-btn {
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 10px 15px;
+    font-size: 14px;
+    line-height: 1em;
+    border-radius: 12px;
+    color: $clr-white;
+    background: $clr-secondary;
+    -webkit-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+    border: none;
+}
+
+
+
+.user-c-btn svg {
+    width: 20px;
+    height: 20px;
+    width: 100%;
+    stroke: $clr-white;
+}
+
+
+
+//media
+
+@media (min-width: 1200px) {
+    .user-c-btn:hover {
+        background: $clr-primary;
+    }
+}
+
+@media (max-width: 1730px) {
+    .user-c-btn {
+        padding: 8px 12px;
+    }
+
+    .user-c-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .user-c-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .user-menu {
+        width: 220px;
+        padding: 10px;
+    }
+
+    .user-name {
+        font-size: 14px;
+    }
+
+    .user-menu-list {
+        margin: 10px 0;
+        padding: 10px 0;
+    }
+
+    .user-menu-list li + li {
+        margin-top: 10px;
+    }
+
+    .exit a {
+        font-size: 14px;
+    }
+
+    .exit a svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .user-cabinet {
+        margin-right: 20px;
+    }
+
+    .user-c-btn {
+        padding: 0;
+        font-size: 0;
+        background: 0 0;
+    }
+
+    .user-c-btn svg {
+        width: 26px;
+        height: 26px;
+        stroke: $clr-black;
+    }
+}
+
+@media (max-width: 374px) {
+    .user-c-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .user-menu{
+        right: -30px;
+    }
+}
