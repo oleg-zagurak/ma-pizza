@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./page/product-info/product-info.module').then(m => m.ProductInfoModule)
   },
   {
-    path: 'admin', 
+    path: 'admin', canActivate: [UserGuard],
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {

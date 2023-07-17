@@ -1,0 +1,88 @@
+@import '../../shared/styles/variables';
+
+.cart-informer {
+    position: fixed;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    bottom: 0;
+    z-index: 500;
+    max-width: 834px;
+    height: 100px;
+    width: 100%;
+    left: 50%;
+    -webkit-transform: translate(-50%, 120px);
+    -ms-transform: translate(-50%, 120px);
+    transform: translate(-50%, 120px);
+    visibility: hidden;
+    opacity: 0;
+    padding: 15px;
+    -webkit-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+.cart-informer .cart-informer-inner {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 40px;
+    border-radius: 12px;
+    background: $clr-white;
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, .06);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .06);
+}
+
+.cart-informer .cart-informer-inner .text b {
+    color: $clr-black;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.cart-informer .cart-informer-inner .btn {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+.cart-informer.active {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: translate(-50%, -40px);
+    -ms-transform: translate(-50%, -40px);
+    transform: translate(-50%, -40px);
+}
+
+//media
+
+@media (min-width: 1200px) {
+    .cart-informer .cart-informer-inner .text {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 767px) {
+    .cart-informer .cart-informer-inner {
+        display: block;
+        text-align: center;
+    }
+
+    .cart-informer .cart-informer-inner .text {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}

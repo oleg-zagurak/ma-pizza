@@ -1,0 +1,359 @@
+<div class="section checkout-section">
+    <img class="decor-img rellax" data-rellax-speed="-1"
+        src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/decor-img-6.svg" alt=""
+        style="top: 0px; left: -40px; transform: translate3d(0px, -6px, 0px);">
+    <img class="decor-img rellax" data-rellax-speed="-1"
+        src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/decor-img-5.svg" alt=""
+        style="bottom: 8%; right: -40px; transform: translate3d(0px, -212px, 0px);">
+    <div class="container">
+        <div class="spacer-sm"></div>
+        <div class="row justify-content-center" *ngIf="products.length > 0">
+            <div class="col-xxl-10 text-center">
+                <h1 class="title title-decor h1">Оформлення замовлення</h1>
+            </div>
+        </div>
+        <div class="spacer-xs"></div>
+        <div class="row checkout-row justify-content-center" *ngIf="products.length > 0">
+            <div class="col-lg-6 col-xxl-5 special">
+                <div class="checkout-products">
+                    <div class="thank-total-bonus-product">
+                        <span>Нарахується бонусів:</span>
+                        <span class="cart_bonus-wrap"><b class="all-product-bonus-start">{{totalBonus}}</b> грн</span>
+                    </div>
+
+                    <div class="prod_horiz js-product cart-product" *ngFor="let product of products">
+                        <a class="prod_horiz-img" [routerLink]="['/product', product.id]">
+                            <img class="img imgLoaded" [src]="product.imagePath">
+                        </a>
+                        <div class="prod_horiz-desc">
+                            <div class="prod-title-wrap">
+                                <a class="title h5" [routerLink]="['/product', product.id]">{{product.name}}</a>
+                                <button class="btn-close remove-product" (click)="delete(product)"></button>
+                                <div class="added_ing-wrap">
+                                    <div class="ing_output-inner">
+                                        <div class="ing_control" *ngFor="let toping of product.topings">
+                                            <div class="ing_control-title">1 Х {{toping.name}}</div><button
+                                                class="cart-dropdown-delete"
+                                                (click)="removeToping(product, toping)"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="prod_horiz-controls">
+                                <div class="price_default">
+                                    <b>{{getPrice(product)}}</b> грн
+                                </div>
+
+                                <div class="thumb-input-number">
+                                    <button type="button" class="decrement in-cart"
+                                        (click)="setAmount(false, product)">-</button>
+                                    <input class="product-qty" [value]="product.count" readonly="" tabindex="-1"
+                                        max="999">
+                                    <button type="button" class="increment in-cart"
+                                        (click)="setAmount(true, product)">+</button>
+                                </div>
+
+                                <div class="price-wrap">
+                                    <b class="price">{{getFullPrice(product)}}</b> грн
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-xxl-5">
+                <form class="delivery-form b-shadow" id="checkout-form" [formGroup]="orderForm">
+                    <div class="form-group">
+                        <div class="form-title title h4">Контактні дані</div>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <input class="input" type="text" name="first_name" placeholder="*Вашe ім’я" value=""
+                                    formControlName="name" [class.error]="getControlByName('name').invalid">
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <input class="input inputmask" name="phone" type="text" value="" placeholder="*Телефон"
+                                    formControlName="tel" [class.error]="getControlByName('tel').invalid">
+                            </div>
+                            <div class="col-12">
+                                <input class="input" value="" type="email" name="email"
+                                    placeholder="Email (для отримання копії замовлення)" formControlName="email">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-title title h4">Інформація про доставку</div>
+                        <div class="checkbox-entry-wrap"> <label class="checkbox-entry radio">
+                                <input type="radio" name="deliveryType" class="toggle-block-control"
+                                    formControlName="deliveryType" checked="" value="true">
+
+                                <span>Адресна доставка</span>
+                            </label>
+                            <label class="checkbox-entry radio">
+                                <input type="radio" name="deliveryType" class="toggle-block-control" value="false"
+                                    formControlName="deliveryType">
+                                <span>Самовивіз</span>
+                            </label>
+                        </div>
+                        <div class="toggle-block" data-block="2" data-rel="4" *ngIf="isAddress">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="sumoselect-wrapp">
+                                        <div class="select-mat">
+                                            <mat-form-field>
+                                                <mat-select formControlName="city" [value]="'1'"
+                                                    [class.error]="getControlByName('city').invalid">
+                                                    <mat-option disabled="" selected value="1">*Місто</mat-option>
+                                                    <mat-option value="Львів">Львів</mat-option>
+                                                    <mat-option value="Зубра">Зубра</mat-option>
+                                                    <mat-option value="Сокільники">Сокільники</mat-option>
+                                                    <mat-option value="Пасіки-Зубрицькі">Пасіки-Зубрицькі</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <input id="streetAutocomplete" class="input ui-autocomplete-input" type="text"
+                                        placeholder="*Вулиця" name="street" formControlName="street"
+                                        [class.error]="getControlByName('street').invalid">
+                                </div>
+
+                                <div class="col-6 col-sm-3">
+                                    <input id="houseNumber" maxlength="5" class="input" type="text"
+                                        placeholder="Будинок" name="building" value="" formControlName="building">
+                                </div>
+
+                                <div class="col-6 col-sm-3">
+                                    <input type="text" name="entrance" class="input" placeholder="Під'їзд"
+                                        formControlName="enterence">
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <input type="text" name="floor" class="input" placeholder="Поверх"
+                                        formControlName="floor">
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <input type="text" name="flat" class="input" placeholder="Квартира"
+                                        formControlName="flat">
+                                </div>
+                                <div class="col-12">
+                                    <div class="map-block" id="map">
+                                        <img src="./../../../assets/Map.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="toggle-block" data-block="2" data-rel="1" *ngIf="selfPick">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="sumoselect-wrapp">
+                                        <div class="select-mat">
+                                            <mat-form-field>
+                                                <mat-select formControlName="ourAdress" [value]="'1'"
+                                                    [class.error]="getControlByName('ourAdress').invalid">
+                                                    <mat-option disabled="" selected value="1">*Виберіть
+                                                        адресу
+                                                        самовивозу</mat-option>
+                                                    <mat-option value="Залізнична, 19  ">Залізнична, 19 </mat-option>
+                                                    <mat-option value="Малоголосківська, 16  ">Малоголосківська, 16
+                                                    </mat-option>
+                                                    <mat-option value="Пулюя, 12 ">Пулюя, 12</mat-option>
+                                                    <mat-option value="Китайська, 10 ">Китайська, 10 </mat-option>
+                                                    <mat-option value="Івана Франка, 71">Івана Франка, 71</mat-option>
+                                                    <mat-option value="Червоної Калини, 60">Червоної Калини,
+                                                        60</mat-option>
+                                                    <mat-option value="Пасічна, 181">Пасічна, 181</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkbox-entry-wrap time_wrapper">
+                            <label class="checkbox-entry radio">
+                                <input type="radio" class="toggle-block-control" name="orderBefore" data-block="1"
+                                    data-rel="0" checked="" value="true" formControlName="orderBefore">
+                                <span>Доставити якомога швидше</span>
+                            </label>
+                            <label class="checkbox-entry radio">
+                                <input type="radio" class="toggle-block-control" name="orderBefore" data-block="1"
+                                    data-rel="1" value="false" formControlName="orderBefore">
+                                <span>На час</span>
+                            </label>
+                        </div>
+                        <div class="row wrapper_time_block" style="padding-bottom: 15px" *ngIf="!isTime">
+                            <div class="col-sm-6">
+                                <div class="datepicker">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Дата доставки</mat-label>
+                                        <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate"
+                                            formControlName="date" placeholder="" (dateChange)="addEvent($event)"
+                                            [class.error]="getControlByName('date').invalid">
+                                        <mat-datepicker-toggle matIconSuffix [for]="picker">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #picker disabled="false"></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="sumoselect-wrapp">
+                                    <div class="select-mat">
+                                        <mat-form-field>
+                                            <mat-select [value]="'1'" formControlName="timeInterval"
+                                                [class.error]="getControlByName('timeInterval').invalid">
+                                                <mat-option value="1" disabled="">*Час </mat-option>
+                                                <mat-option value="10:00 - 10:15">10:00 - 10:15</mat-option>
+                                                <mat-option value="10:15 - 10:30">10:15 - 10:30</mat-option>
+                                                <mat-option value="10:30 - 10:45">10:30 - 10:45</mat-option>
+                                                <mat-option value="10:45 - 11:00">10:45 - 11:00</mat-option>
+                                                <mat-option value="11:00 - 11:15">11:00 - 11:15</mat-option>
+                                                <mat-option value="11:15 - 11:30">11:15 - 11:30</mat-option>
+                                                <mat-option value="11:30 - 11:45">11:30 - 11:45</mat-option>
+                                                <mat-option value="11:45 - 12:00">11:45 - 12:00</mat-option>
+                                                <mat-option value="12:00 - 12:15">12:00 - 12:15</mat-option>
+                                                <mat-option value="12:15 - 12:30">12:15 - 12:30</mat-option>
+                                                <mat-option value="12:30 - 12:45">12:30 - 12:45</mat-option>
+                                                <mat-option value="12:45 - 13:00">12:45 - 13:00</mat-option>
+                                                <mat-option value="13:00 - 13:15">13:00 - 13:15</mat-option>
+                                                <mat-option value="13:15 - 13:30">13:15 - 13:30</mat-option>
+                                                <mat-option value="13:30 - 13:45">13:30 - 13:45</mat-option>
+                                                <mat-option value="13:45 - 14:00">13:45 - 14:00</mat-option>
+                                                <mat-option value="14:00 - 14:15">14:00 - 14:15</mat-option>
+                                                <mat-option value="14:15 - 14:30">14:15 - 14:30</mat-option>
+                                                <mat-option value="14:30 - 14:45">14:30 - 14:45</mat-option>
+                                                <mat-option value="14:45 - 15:00">14:45 - 15:00</mat-option>
+                                                <mat-option value="15:00 - 15:15">15:00 - 15:15</mat-option>
+                                                <mat-option value="15:15 - 15:30">15:15 - 15:30</mat-option>
+                                                <mat-option value="15:30 - 15:45">15:30 - 15:45</mat-option>
+                                                <mat-option value="15:45 - 16:00">15:45 - 16:00</mat-option>
+                                                <mat-option value="16:00 - 16:15">16:00 - 16:15</mat-option>
+                                                <mat-option value="16:15 - 16:30">16:15 - 16:30</mat-option>
+                                                <mat-option value="16:30 - 16:45">16:30 - 16:45</mat-option>
+                                                <mat-option value="16:45 - 17:00">16:45 - 17:00</mat-option>
+                                                <mat-option value="17:00 - 17:15">17:00 - 17:15</mat-option>
+                                                <mat-option value="17:15 - 17:30">17:15 - 17:30</mat-option>
+                                                <mat-option value="17:30 - 17:45">17:30 - 17:45</mat-option>
+                                                <mat-option value="17:45 - 18:00">17:45 - 18:00</mat-option>
+                                                <mat-option value="18:00 - 18:15">18:00 - 18:15</mat-option>
+                                                <mat-option value="18:15 - 18:30">18:15 - 18:30</mat-option>
+                                                <mat-option value="18:30 - 18:45">18:30 - 18:45</mat-option>
+                                                <mat-option value="18:45 - 19:00">18:45 - 19:00</mat-option>
+                                                <mat-option value="19:00 - 19:15">19:00 - 19:15</mat-option>
+                                                <mat-option value="19:15 - 19:30">19:15 - 19:30</mat-option>
+                                                <mat-option value="19:30 - 19:45">19:30 - 19:45</mat-option>
+                                                <mat-option value="19:45 - 20:00">19:45 - 20:00</mat-option>
+                                                <mat-option value="20:00 - 20:15">20:00 - 20:15</mat-option>
+                                                <mat-option value="20:15 - 20:30">20:15 - 20:30</mat-option>
+                                                <mat-option value="20:30 - 20:45">20:30 - 20:45</mat-option>
+                                                <mat-option value="20:45 - 21:00">20:45 - 21:00</mat-option>
+                                                <mat-option value="21:00 - 21:15">21:00 - 21:15</mat-option>
+                                                <mat-option value="21:15 - 21:30">21:15 - 21:30</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 3 step -->
+                    <div class="form-group pay-part">
+                        <div class="form-title title h4">Параметри оплати</div>
+
+                        <div class="checkbox-entry-wrap">
+                            <label class="checkbox-entry radio">
+                                <input type="radio" class="toggle-block-control" id="payment_method_cod" data-block="3"
+                                    data-rel="cod" name="paymentType" checked="" value="cod"
+                                    formControlName="paymentType">
+                                <span>Готівка</span>
+                            </label>
+                            <label class="checkbox-entry radio">
+                                <input type="radio" class="toggle-block-control" id="payment_method_liqpay"
+                                    data-block="3" data-rel="liqpay" name="paymentType" value="liqpay"
+                                    formControlName="paymentType">
+                                <span>Онлайн оплата</span>
+                            </label>
+                            <label class="checkbox-entry radio">
+                                <input type="radio" class="toggle-block-control" id="payment_method_bacs" data-block="3"
+                                    data-rel="bacs" name="paymentType" value="bacs" formControlName="paymentType">
+                                <span>Оплата через термінал</span>
+                            </label>
+                        </div>
+                        <div class="toggle-block" data-block="3" data-rel="cod" style="display: block" *ngIf="money">
+                            <div class="moneychange-input">
+                                <div class="text">Підготувати решту з:</div>
+                                <input class="input" type="number" placeholder="Введіть суму" name="user_sum"
+                                    formControlName="rest">
+                                <label class="checkbox-entry">
+                                    <input type="checkbox" name="without_rest" formControlName="restStatus"><span>Без
+                                        решти</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thank-total-wrap">
+                        <div class="deliveryWarning">
+                            <div class="errorMsg lowOrder minimum-order alert alert-success" *ngIf="valid.main">
+                                Введіть ваше ім'я та телефон
+                            </div>
+                            <div class="errorMsg lowOrder minimum-order alert alert-success" *ngIf="valid.isTime">
+                                Введіть дату та час доставки
+                            </div>
+                            <div class="errorMsg empty-address" *ngIf="valid.isAddress">
+                                Введіть Вашу адресу та номер будинку </div>
+                            <div class="errorMsg lowOrderDelivery alert alert-success" *ngIf="valid.selfPick">
+                                Оберіть адресу самовивозу</div>
+                        </div>
+
+                        <div class="thank-total-item  thank-total-cost not_visble_border">
+                            <div>Загальна вартість:</div>
+                            <div><b class="all-product-price">{{totalPrice}}</b> грн</div>
+                        </div>
+
+                        <div class="thank-total-item thank-total-bonus ">
+                            <div>Нарахується бонусів:</div>
+                            <div class="cart_bonus-wrap"><b class="all-product-bonus">{{totalBonus}}</b> грн</div>
+                        </div>
+                    </div>
+
+
+                    <div class="checkbox-entry-wrap">
+                        <label class="checkbox-entry">
+                            <input type="checkbox" name="no_call" formControlName="recall">
+                            <span>Зателефонуйте мені для уточнення замовлення</span>
+                        </label>
+                    </div>
+
+                    <!--  5 toggle-block -->
+                    <div class="checkbox-entry-wrap">
+                        <label class="checkbox-entry">
+                            <input type="checkbox" name="addComment" class="toggle-block-control" data-block="5"
+                                formControlName="comment"><span>Додати коментар</span>
+                        </label>
+                    </div>
+                    <div class="toggle-block" data-block="5" data-rel="0" style="padding-bottom: 15px" *ngIf="comment">
+                        <textarea name="commentText" class="input" placeholder="Ваш коментар"
+                            formControlName="commentText"></textarea>
+                    </div>
+                    <button class="btn btn-primary btn-block main-order-button" type="button" (click)="createOrder()"
+                        [class.disabled]="disable">
+                        <span>Підтвердити замовлення</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="row justify-content-center" *ngIf="products.length === 0">
+            <div class="cart_items">
+                <div class="cart-empty-message">
+                    <div class="title h5 text-center">Кошик порожній</div>
+                    <a class="btn btn-primary" routerLink="/">Перейти до каталогу</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer-lg"></div>
+</div>
