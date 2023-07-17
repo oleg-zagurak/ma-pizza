@@ -1,0 +1,39 @@
+<section class="section">
+    <div class="spacer-xs"></div>
+    <div class="banner-slider">
+        <div class="container">
+            <div class="swiper-entry">
+                <swiper [config]="config" [virtual]="true" [effect]="'fade'">
+                    <ng-template swiperSlide *ngFor="let banner of banners">
+                        <div class="banner-slide">
+                            <div class="row">
+                                <div class="col-lg-5 order-1 order-lg-0 align-self-xl-center">
+                                    <div class="banner-content">
+                                        <div class="banner-decor">
+                                            <img src="https://mapizza.com.ua/wp-content/uploads/2022/03/banner-decor.svg"
+                                                alt="">
+                                        </div>
+                                        <div class="title h1 text-cut-3">{{banner.name}}</div>
+                                        <div class="text text-cut-5">
+                                            <p [innerHtml]="banner.shortDescription"></p>
+                                        </div> <a class="btn btn-primary" routerLink="/" fragment="pizza">
+                                            <span>Замовити</span>
+                                            <i></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 align-self-xl-end">
+                                    <div class="banner-imgs">
+                                        <img [src]="banner.imagePath"
+                                            data-i-src=""
+                                            alt="" class="imgLoaded">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+        </div>
+    </div>
+</section>
