@@ -30,7 +30,7 @@ export class ProductInfoComponent implements OnInit {
       next: ({ product }) => {
         this.product = product as IProduct;
         this.categoryName = categories[this.product.category];
-        this.product.category === 'pizza' ? this.categoryPath = '/' : this.categoryPath = `product/${this.product.category}`;
+        this.product.category === 'pizza' ? this.categoryPath = '/' : this.categoryPath = `/product/${this.product.category}`;
         this.product.topings ? this.addings = true : this.addings = false;
         this.getTotallPrice();
       },
