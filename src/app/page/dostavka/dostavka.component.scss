@@ -1,0 +1,90 @@
+@import '../../shared/styles/variables';
+
+.section {
+    position: relative;
+}
+
+.terms-delivery-row.row>* {
+    max-width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-top: 0;
+}
+
+.terms-delivery-row {
+    margin-bottom: -30px;
+    padding: 0;
+}
+
+.terms-delivery-row>[class*=col] {
+    margin-bottom: 30px;
+}
+
+.delivery-item {
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid #d1d9ce;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: 20px 20px 0px #f2faf2;
+    box-shadow: 20px 20px 0px #f2faf2;
+    border-radius: 16px;
+    padding: 30px 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.map-block img{
+    width: 100%;
+}
+
+.payment-item {
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid #d1d9ce;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: 20px 20px 0px #f2faf2;
+    box-shadow: 20px 20px 0px #f2faf2;
+    border-radius: 16px;
+    padding: 30px 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.payment-item .payment-img {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    margin-right: 30px;
+    margin-top: 15px;
+}
+
+.payment-item .payment-img img {
+    display: block;
+    width: 48px;
+    height: 48px;
+}
+
+
+
+@media (max-width: 1730px) {
+    .delivery-item {
+        padding: 20px;
+    }
+
+    .payment-item {
+        padding: 20px;
+    }
+
+    .payment-item .payment-img {
+        margin-right: 15px;
+        margin-top: 5px;
+    }
+
+    .payment-item .payment-img img {
+        width: 36px;
+        height: 36px;
+    }
+}
