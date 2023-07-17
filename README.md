@@ -1,3 +1,13 @@
+# Accounts
+
+user account => email: `user@gmail.com`  password: `qwerty123`
+
+admin account => email: `admin@gmail.com`  password: `qwerty123`
+
+# Admin login page
+
+To get to admin login page navigate to `http://localhost:4200/auth`
+
 # Mapizza
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.2.
