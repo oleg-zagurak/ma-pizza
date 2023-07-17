@@ -1,0 +1,49 @@
+<div class="section promotions">
+    <img class="decor-img rellax" data-rellax-speed="-1"
+        src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/decor-img-6.svg" alt=""
+        style="top: 23%; right: -40px; transform: translate3d(0px, -67px, 0px) scaleX(-1);">
+    <img class="decor-img rellax" data-rellax-speed="-1"
+        src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/decor-img-5.svg" alt=""
+        style="top: 45%; left: -40px; transform: translate3d(0px, -135px, 0px) scaleX(-1);">
+    <img class="decor-img rellax" data-rellax-speed="-1"
+        src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/decor-img-7.svg" alt=""
+        style="top: 65%; right: -40px; transform: translate3d(0px, -192px, 0px);">
+    <div class="spacer-sm"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-10 text-center">
+                <div class="title title-decor h2">
+                    <span>Акції</span>
+                </div>
+            </div>
+            <div class="spacer-sm"></div>
+        </div>
+        <div class="row news-row promotions justify-content-center">
+            <div class="col-12 col-xl-10">
+                <div class="news-item" *ngFor="let action of actions">
+                    <a class="news-img " [routerLink]="['/action', action.id]">
+                        <img [src]="action.imagePath"
+                            alt="">
+                    </a>
+                    <div class="news-content">
+                        <div class="title h3 text-cut-3">
+                            <a [routerLink]="['/action', action.id]">
+                               {{action.name}} </a>
+                        </div>
+                        <div class="text text-cut-5">
+                            <p [innerHTML]="action.description | slice:0:500"></p>
+                        </div>
+                        <a [routerLink]="['/action', action.id]" class="btn-link">
+                            <span>Дізнатись більше</span>
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12"></div>
+        </div>
+    </div>
+    <div class="spacer-lg"></div>
+</div>
