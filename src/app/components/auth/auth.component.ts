@@ -19,9 +19,6 @@ export class AuthComponent implements OnInit {
   constructor(private auth: AuthService,
     private modal: ModalService,
     private router: Router) {
-      if (localStorage.getItem('currentUser')) {
-        this.user = JSON.parse(localStorage.getItem('currentUser') as string)
-      }
       this.router.events.subscribe(e => {
         if (e instanceof NavigationStart){
           this.closeOnNavigate();
@@ -33,6 +30,9 @@ export class AuthComponent implements OnInit {
     this.auth.authSubject?.subscribe((mode: boolean) => {
       if (mode) {
         this.isLogged = this.auth.isLogged;
+        if (localStorage.getItem('currentUser')) {
+          this.user = JSON.parse(localStorage.getItem('currentUser') as string)
+        }
       } else {
         this.resetOnLogout();
         location.reload()
