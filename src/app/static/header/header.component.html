@@ -1,1 +1,95 @@
-<p>header works!</p>
+<header class="no-poster" [class.scrolled]="scrollStatus" [class.open-menu]="burger">
+    <div class="header-wrapper">
+        <div class="container">
+            <div class="header-top">
+                <div class="header-phone">
+                    <a href="tel:+380971830618">+38 097 18 306 18 </a>
+                    <p>нд-чт 09:30 − 21:00 <br> пт- сб 09:30 − 22:00 <br></p>
+                </div>
+                <nav class="header-links">
+                    <ul>
+                        <li>
+                            <a routerLink="about-us/">Про нас</a>
+                        </li>
+                        <li>
+                            <a routerLink="dostavka/">Доставка та оплата</a>
+                        </li>
+                        <li>
+                            <a routerLink="actions/">Акції</a>
+                        </li>
+                        <li>
+                            <a routerLink="kontakty/">Контакти</a>
+                        </li>
+                        <li>
+                            <a routerLink="career/">Вакансії</a>
+                        </li>
+                        <li>
+                            <a routerLink="news/">Новини</a>
+                        </li>
+                        <li>
+                            <a routerLink="/">Відгук</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-info">
+                    <img src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/icons/i-header-top.svg"
+                        alt="">
+                    <p><b>29 хв</b><span> — середній час доставки</span></p>
+                </div>
+            </div>
+            <div class="header-bottom">
+                <a class="header-logo" routerLink="/">
+                    <img src="https://mapizza.com.ua/wp-content/uploads/2022/03/logo-pizza-red.svg" alt="">
+                </a>
+                <div class="menu-list">
+                    <ul>
+                        <li [class.active]="pizza">
+                            <a routerLink="/" fragment="pizza"><img class="2"
+                                    src="https://mapizza.com.ua/wp-content/uploads/2021/09/i-menu-1.svg" alt="">Піца</a>
+                        </li>
+                        <li routerLinkActive="active">
+                            <a routerLink="product/salads"><img class="1"
+                                    src="https://mapizza.com.ua/wp-content/uploads/2021/09/i-menu-2.svg"
+                                    alt="">Салати</a>
+                        </li>
+                        <li routerLinkActive="active">
+                            <a routerLink="product/desserts"><img class="1"
+                                    src="https://mapizza.com.ua/wp-content/uploads/2021/09/i-menu-3.svg"
+                                    alt="">Десерти</a>
+                        </li>
+                        <li routerLinkActive="active">
+                            <a routerLink="product/drinks"><img class="1"
+                                    src="https://mapizza.com.ua/wp-content/uploads/2021/09/i-menu-4.svg"
+                                    alt="">Напої</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="user-c-wrapper">
+                    <a class="user-fav empty" routerLink="/">
+                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10.5166 17.8416C10.2333 17.9416 9.76663 17.9416 9.48329 17.8416C7.06663 17.0166 1.66663 13.5749 1.66663 7.74159C1.66663 5.16659 3.74163 3.08325 6.29996 3.08325C7.81663 3.08325 9.15829 3.81659 9.99996 4.94992C10.8416 3.81659 12.1916 3.08325 13.7 3.08325C16.2583 3.08325 18.3333 5.16659 18.3333 7.74159C18.3333 13.5749 12.9333 17.0166 10.5166 17.8416Z"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        <i class="num ">0</i>
+                        <div class="tooltip">
+                            <img src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/popup-img-5.svg"
+                                alt="">
+                            <div class="h6">
+                                Список улюблених товарів пустий </div>
+                        </div>
+                    </a>
+                    <app-auth></app-auth>
+                </div>
+                <app-basket></app-basket>
+                <div class="hamburger hamburger--elastic-r" [class.is-active]="burger">
+                    <div class="hamburger-box" (click)="togleBurger()">
+                        <div class="hamburger-inner"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<app-basket-dialog></app-basket-dialog>
+<app-auth-dialog></app-auth-dialog>

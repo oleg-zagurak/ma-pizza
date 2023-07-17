@@ -1,0 +1,127 @@
+@import './../styles/variables';
+
+.swiper-pagination-bullet{
+    background-color: $clr-secondary;
+}
+
+.banner-slider {
+
+    & .swiper-pagination-bullet {
+        background-color: $clr-secondary;
+        width: 12px;
+        height: 12px;
+        border: 1px solid $clr-grey;
+
+        &-active {
+            background-color: $clr-secondary;
+        }
+    }
+
+    & .swiper-slide .slide {
+        width: 100%;
+        height: fit-content;
+        border-radius: 16px;
+        cursor: pointer;
+    }
+
+    & .swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet,
+    .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+        margin: 0 5px;
+    }
+
+    & .swiper-pagination-horizontal.swiper-pagination-bullets {
+        bottom: 30px;
+    }
+
+    & .swiper {
+        padding: 40px 0 80px;
+    }
+
+    & .swiper-wrapper {
+        cursor: url(https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/drag.png) 16 9, ew-resize;
+        height: 500px;
+    }
+}
+
+//about us slider
+
+.benefits-row {
+    .swiper{
+        padding-bottom: 15px;
+    }
+    & .swiper-pagination-horizontal.swiper-pagination-bullets {
+        bottom: 0;
+    }
+}
+
+@media (max-width: 1200px) {
+    .banner-slider {
+        & .swiper-wrapper {
+            max-height: 320px;
+        }
+
+        & .swiper {
+            padding: 0 0 20px;
+        }
+    }
+}
+
+@media (max-width: 992px) {
+
+    .section .banner-slider .swiper-entry::before {
+        background-repeat: repeat;
+    }
+
+    .banner-slider {
+        & .swiper-wrapper {
+            max-height: 700px;
+            height: 100%;
+            padding: 0;
+        }
+
+        & .swiper-pagination-horizontal.swiper-pagination-bullets {
+            bottom: 40px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-slider {
+        & .swiper-wrapper {
+            max-height: 430px;
+            height: 100%;
+            padding: 0;
+        }
+
+        & .swiper-pagination-horizontal.swiper-pagination-bullets {
+            bottom: 10px;
+        }
+
+        & .swiper-pagination-bullet {
+            width: 6px;
+            height: 6px;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .banner-slider {
+        & .swiper-wrapper {
+            max-height: 440px;
+            height: 100%;
+            padding: 0;
+        }
+
+        & .swiper-pagination-horizontal.swiper-pagination-bullets {
+            bottom: 15px;
+        }
+    }
+}
+
+@media (max-width: 460px) {
+    .banner-slider {
+        & .swiper-wrapper {
+            max-height: 500px;
+        }
+    }
+}
