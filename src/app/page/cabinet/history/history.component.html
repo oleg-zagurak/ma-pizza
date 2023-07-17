@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-xl-10 col-xxl-8">
+        <div class="table">
+            <div class="table-row table-head">
+                <div class="hcell cell">№</div>
+                <div class="hcell cell">Дата та час</div>
+                <div class="hcell cell">Тип доставки і адреса</div>
+                <div class="hcell cell">Сума і тип оплати</div>
+                <div class="hcell cell">Статус</div>
+            </div>
+            <ng-container *ngIf="orders.length > 0 ? false : true">
+                <div class="empty-history">
+                    Поки що ви не зробили жодного замовлення <a class="simple-link"
+                        href="https://mapizza.com.ua">перейти в каталог</a>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="orders.length > 0 ? true : false">
+                <div class="table-row" *ngFor="let order of orders; let i = index">
+                    <div class="cell">
+                        <div class="cell-head">№</div>
+                        <div class="cell-block">{{order.number}}</div>
+                    </div>
+                    <div class="cell">
+                        <div class="cell-head">Дата та час</div>
+                        <div class="cell-block">{{order.deliveryTime}}</div>
+                    </div>
+                    <div class="cell">
+                        <div class="cell-head">Тип доставки і адреса</div>
+                        <div class="cell-block">
+                            {{order.deliveryType}}/
+                            {{order.address}}
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="cell-head">Сума і тип оплати</div>
+                        <div class="cell-block">
+                            {{getTotal(order)}} грн /
+                            {{order.payment}}
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="cell-head">Статус</div>
+                        <div class="cell-block pending" [class.success]="order.status">
+                            {{ order.status ? 'виконано' : 'в процесі'}}
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<div class="spacer-sm"></div>

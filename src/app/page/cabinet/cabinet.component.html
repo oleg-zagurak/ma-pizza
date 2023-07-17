@@ -1,0 +1,30 @@
+<section class="section cabinet-section">
+    <div class="spacer-sm"></div>
+    <img class="decor-img rellax" src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/decor-img-6.svg"
+        alt="" style="top: 0px; left: -40px; transform: translate3d(0px, -5px, 0px);">
+    <img class="decor-img rellax" src="https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/decor-img-5.svg"
+        alt="" style="bottom: 8%; right: -40px; transform: translate3d(0px, -45px, 0px);">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col text-center">
+                <h1 class="title title-decor h2">Особистий кабінет</h1>
+            </div>
+        </div>
+        <div class="spacer-xs"></div>
+        <div class="categories-menu" #container (click)="menuSwitcher(container)">
+            <div class="category-title">{{title}}</div>
+            <ul class="categories-list">
+                <li routerLinkActive="active" class="categories-list-item"><a routerLink="info">Особисті дані</a></li>
+                <li routerLinkActive="active" class="categories-list-item"><a routerLink="history">Історія замовлень</a>
+                </li>
+                <li routerLinkActive="active" class="categories-list-item"><a routerLink="password">Зміна Паролю</a>
+                </li>
+                <li routerLinkActive="active" class="categories-list-item"><a routerLink="favorite">Улюблені</a></li>
+            </ul>
+        </div>
+        <div id="barcode" style="padding: 0px; overflow: auto; width: 121px;"><img
+                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjEyMSIgaGVpZ2h0PSI1MCI+PHJlY3Qgd2lkdGg9IjEyMSIgaGVpZ2h0PSI1MCIgeD0iMCIgeT0iMCIgZmlsbD0iI0ZGRkZGRiIgLz48cmVjdCB3aWR0aD0iMiIgaGVpZ2h0PSI1MCIgeD0iMTAiIHk9IjAiIGZpbGw9IiMwMDAwMDAiIC8+PHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iNTAiIHg9IjEzIiB5PSIwIiBmaWxsPSIjMDAwMDAwIiAvPjxyZWN0IHdpZHRoPSIzIiBoZWlnaHQ9IjUwIiB4PSIxNiIgeT0iMCIgZmlsbD0iIzAwMDAwMCIgLz48cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSI1MCIgeD0iMjEiIHk9IjAiIGZpbGw9IiMwMDAwMDAiIC8+PHJlY3Qgd2lkdGg9IjIiIGhlaWdodD0iNTAiIHg9IjI1IiB5PSIwIiBmaWxsPSIjMDAwMDAwIiAvPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjUwIiB4PSIzMCIgeT0iMCIgZmlsbD0iIzAwMDAwMCIgLz48cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSI1MCIgeD0iMzIiIHk9IjAiIGZpbGw9IiMwMDAwMDAiIC8+PHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iNTAiIHg9IjM2IiB5PSIwIiBmaWxsPSIjMDAwMDAwIiAvPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjUwIiB4PSIzOSIgeT0iMCIgZmlsbD0iIzAwMDAwMCIgLz48cmVjdCB3aWR0aD0iMiIgaGVpZ2h0PSI1MCIgeD0iNDMiIHk9IjAiIGZpbGw9IiMwMDAwMDAiIC8+PHJlY3Qgd2lkdGg9IjIiIGhlaWdodD0iNTAiIHg9IjQ3IiB5PSIwIiBmaWxsPSIjMDAwMDAwIiAvPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjUwIiB4PSI1MSIgeT0iMCIgZmlsbD0iIzAwMDAwMCIgLz48cmVjdCB3aWR0aD0iMyIgaGVpZ2h0PSI1MCIgeD0iNTQiIHk9IjAiIGZpbGw9IiMwMDAwMDAiIC8+PHJlY3Qgd2lkdGg9IjIiIGhlaWdodD0iNTAiIHg9IjU4IiB5PSIwIiBmaWxsPSIjMDAwMDAwIiAvPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjUwIiB4PSI2MyIgeT0iMCIgZmlsbD0iIzAwMDAwMCIgLz48cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSI1MCIgeD0iNjUiIHk9IjAiIGZpbGw9IiMwMDAwMDAiIC8+PHJlY3Qgd2lkdGg9IjIiIGhlaWdodD0iNTAiIHg9IjY4IiB5PSIwIiBmaWxsPSIjMDAwMDAwIiAvPjxyZWN0IHdpZHRoPSIzIiBoZWlnaHQ9IjUwIiB4PSI3MiIgeT0iMCIgZmlsbD0iIzAwMDAwMCIgLz48cmVjdCB3aWR0aD0iMyIgaGVpZ2h0PSI1MCIgeD0iNzYiIHk9IjAiIGZpbGw9IiMwMDAwMDAiIC8+PHJlY3Qgd2lkdGg9IjIiIGhlaWdodD0iNTAiIHg9IjgwIiB5PSIwIiBmaWxsPSIjMDAwMDAwIiAvPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjUwIiB4PSI4NSIgeT0iMCIgZmlsbD0iIzAwMDAwMCIgLz48cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI1MCIgeD0iODciIHk9IjAiIGZpbGw9IiMwMDAwMDAiIC8+PHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iNTAiIHg9IjkzIiB5PSIwIiBmaWxsPSIjMDAwMDAwIiAvPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjUwIiB4PSI5NiIgeT0iMCIgZmlsbD0iIzAwMDAwMCIgLz48cmVjdCB3aWR0aD0iMiIgaGVpZ2h0PSI1MCIgeD0iOTgiIHk9IjAiIGZpbGw9IiMwMDAwMDAiIC8+PHJlY3Qgd2lkdGg9IjMiIGhlaWdodD0iNTAiIHg9IjEwMyIgeT0iMCIgZmlsbD0iIzAwMDAwMCIgLz48cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSI1MCIgeD0iMTA3IiB5PSIwIiBmaWxsPSIjMDAwMDAwIiAvPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjUwIiB4PSIxMDkiIHk9IjAiIGZpbGw9IiMwMDAwMDAiIC8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjAgMCkiPjwvZz48L3N2Zz4=">
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</section>

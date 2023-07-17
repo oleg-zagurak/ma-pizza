@@ -1,0 +1,186 @@
+@import './../../shared/styles/variables';
+@import './../../shared/styles/mixins';
+
+.cabinet-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.cabinet-section .decor-img {
+    position: absolute;
+    max-width: 230px;
+    max-height: 230px;
+}
+
+.categories-menu {
+    position: relative;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.category-title {
+    display: none;
+}
+
+.categories-list {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    border: 1px solid $clr-fourth;
+    border-radius: 12px;
+    margin: -1px;
+}
+
+.categories-list-item a {
+    position: relative;
+    display: block;
+    min-width: 186px;
+    padding: 17px 15px;
+    margin: -1px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1em;
+    color: $clr-grey;
+    border-radius: 12px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    -webkit-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+.categories-list-item.active a {
+    background-color: $clr-secondary;
+    color: $clr-white;
+}
+
+@media (max-width: 1000px) {
+    .category-title {
+        position: relative;
+        z-index: 11;
+        display: block;
+        border: 1px solid $clr-fourth;
+        border-radius: 12px;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 14px;
+        color: $clr-black;
+        background: $clr-white;
+        line-height: 1em;
+        padding: 10px 15px;
+
+        &::before {
+            content: '';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            border: solid $clr-black;
+            border-width: 0 2px 2px 0;
+            -webkit-transform: translateY(-50%) rotate(45deg);
+            -ms-transform: translateY(-50%) rotate(45deg);
+            transform: translateY(-50%) rotate(45deg);
+            margin-top: -2px;
+            -webkit-transition: $transition;
+            -o-transition: $transition;
+            transition: $transition;
+        }
+    }
+
+    .categories-list {
+        position: absolute;
+        z-index: 10;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding-top: 10px;
+        border-radius: 0 0 12px 12px;
+        margin: -8px 0 0 0;
+        border: none;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        background: $clr-white;
+        -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+        -webkit-transition: $transition;
+        -o-transition: $transition;
+        transition: $transition;
+        -webkit-transform-origin: top center;
+        -ms-transform-origin: top center;
+        transform-origin: top center;
+        -webkit-transform: scaleY(0);
+        -ms-transform: scaleY(0);
+        transform: scaleY(0);
+    }
+
+    .categories-list-item.active a {
+        background-color: transparent;
+        color: $clr-secondary;
+    }
+
+    .categories-list-item a {
+        padding: 10px 15px;
+        width: 100%;
+    }
+
+    .categories-menu.active .categories-list {
+        -webkit-transform: scaleY(1);
+        -ms-transform: scaleY(1);
+        transform: scaleY(1);
+    }
+}
+
+#barcode {
+    display: flex;
+    width: 100% !important;
+    max-width: 835px;
+    height: 50px;
+    margin: -20px auto 20px auto;
+}
+
+#barcode img {
+    width: 320px;
+    margin: 0 auto;
+}
+
+@media (min-width: 1200px) {
+    .categories-list-item.active a:hover {
+        opacity: .8;
+    }
+
+    .categories-list-item:not(.active) a:hover {
+        color: $clr-primary;
+    }
+}
+
+@media (max-width: 1730px) {
+    .categories-menu {
+        margin-bottom: 30px;
+    }
+
+    .categories-list-item a {
+        min-width: 156px;
+        padding: 14px 15px;
+        font-size: 12px;
+    }
+
+    #barcode {
+        margin: -10px auto 20px auto;
+    }
+
+}
+
+@media (max-width: 1199px) {
+    .cabinet-section .decor-img {
+        display: none;
+    }
+    .spacer-sm{
+        height: 80px;
+    }
+}

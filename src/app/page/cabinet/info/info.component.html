@@ -1,0 +1,55 @@
+<div class="row justify-content-center" data-id="3844">
+    <div class="col-lg-10 col-xl-8 col-xxl-6">
+        <form class="form-cabinet" id="user-edit-form">
+            <div class="form-group">
+                <div class="form-title title h4">Особисті дані</div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input readonly="" type="text" class="input" name="first_name" placeholder="*Ваше ім'я" [value]="user.name">
+                    </div>
+                    <div class="col-md-6">
+                        <input readonly="" type="text" class="input" name="last_name" placeholder="*Ваше прізвище" [value]="user.surname">
+                    </div>
+                </div>
+                <div>
+                    <div class="input-popup-wrapper">
+                        <input readonly="" type="text" name="calendar" class="input birthday" placeholder="Дата народження" [value]="user.birthday">
+                    </div>
+                    <p>Якщо це поле не буде заповнено, то ви не зможете отримувати додаткові бонуси до Дня Вашого народження</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input readonly="" type="email" name="email" class="input" placeholder="*Ваш емейл" [value]="user.email">
+                    </div>
+                    <div class="col-md-6">
+                        <input readonly="" class="input inputmask" name="phone" type="text" placeholder="*Ваш номер телефону" [value]="user.tel">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-title title h4">Адреса доставки</div>
+                <div class="cabinet_address-wrap">
+                    <table class="cabinet_address">
+                        <tbody>                
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="cabinet_address-buttons">
+                <button class="btn btn-secondary open-popup js-clear-address-fields" data-rel="address" type="button">
+                    <span>Додати ще одну адресу</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.0003 18.3333C14.5837 18.3333 18.3337 14.5833 18.3337 9.99996C18.3337 5.41663 14.5837 1.66663 10.0003 1.66663C5.41699 1.66663 1.66699 5.41663 1.66699 9.99996C1.66699 14.5833 5.41699 18.3333 10.0003 18.3333Z" stroke="#D22730" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M6.66699 10H13.3337" stroke="#D22730" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M10 13.3333V6.66663" stroke="#D22730" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </button>
+                <div class="spacer-xs"></div>
+                <button class="btn btn-primary btn-block" type="button">
+                    <span>Зберегти зміни</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="spacer-sm"></div>

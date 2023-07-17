@@ -1,0 +1,46 @@
+@import './../../../shared/styles/variables';
+
+
+.form-cabinet .form-group {
+    margin-bottom: 20px;
+}
+
+.form-cabinet .form-title {
+    margin-bottom: 15px;
+}
+
+.form-cabinet .form-group > * + * {
+    margin-top: 15px;
+}
+
+.form-cabinet .row > [class*=col] {
+    padding: 0 7.5px;
+}
+
+.input-popup-wrapper {
+    position: relative;
+    background-image: url('https://mapizza.com.ua/wp-content/themes/mamma-italiana/img/icons/icon-calendar.svg');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding: 0 7.5px;
+}
+
+.form-cabinet .form-group .input-popup-wrapper + p, .popup-form .input-popup-wrapper + p {
+    color: $clr-grey;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 1.5em;
+    padding: 0 7.5px;
+}
+
+
+@media (max-width: 767px) {
+    .form-cabinet .row>[class*=col] {
+        margin-bottom: 10px;
+        flex: 100%;
+    }
+
+    .form-cabinet .form-group > * + * {
+        margin-top: 0;
+    }
+}
