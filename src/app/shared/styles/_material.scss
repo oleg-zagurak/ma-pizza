@@ -1,0 +1,111 @@
+@import '../../shared/styles/variables';
+
+
+.datepicker {
+    & .mat-form-field {
+        width: 100%;
+        font-size: 16px;
+        height: 54px;
+        background: #ffffff;
+        border: 1px solid #D1D9CE;
+        border-radius: 12px;
+    }
+
+    & .mat-form-field-appearance-fill .mat-form-field-flex {
+        padding: 0.5em 0.75em 0 0.75em;
+    }
+
+    & .mat-input-element:disabled,
+    .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+        color: $clr-black;
+    }
+
+    & .mat-datepicker-toggle,
+    .mat-datepicker-content .mat-calendar-next-button,
+    .mat-datepicker-content .mat-calendar-previous-button {
+        text-align: right;
+        position: absolute;
+        top: -50%;
+        right: -3px;
+        color: $clr-secondary
+    }
+
+    & .mat-form-field-wrapper {
+        padding: 0;
+    }
+
+    & .mat-form-field-appearance-fill.mat-form-field-disabled .mat-form-field-flex {
+        background-color: transparent;
+    }
+}
+
+.mat-datepicker-content .mat-calendar {
+    height: auto !important;
+}
+
+//select 
+
+.select-mat {
+    & .mat-form-field {
+        width: 100%;
+        font-size: 16px;
+        height: 54px;
+        background: #ffffff;
+        border: 1px solid #D1D9CE;
+        border-radius: 12px;
+    }
+
+    & .mat-form-field-appearance-fill .mat-form-field-flex {
+        padding: 0.5em 0.75em 0 0.75em;
+    }
+
+    & .mat-form-field-appearance-legacy .mat-form-field-underline {
+        display: none;
+    }
+
+    & .mat-form-field-flex {
+        padding: 0 15px;
+    }
+
+
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: $clr-black;
+}
+
+.mat-option:hover:not(.mat-option-disabled) {
+    color: $clr-primary;
+    background: transparent;
+}
+
+.mat-primary .mat-option:hover.mat-selected:not(.mat-option-disabled) {
+    color: $clr-primary;
+}
+
+.mat-option.mat-active {
+    background-color: $clr-third;
+}
+
+@media (max-width: 767px) {
+    .select-mat {
+        & .mat-form-field {
+            height: 44px;
+        }
+
+        & .mat-form-field-appearance-legacy .mat-form-field-infix {
+            padding: 0;
+        }
+    }
+
+    .datepicker {
+        & .mat-form-field {
+            height: 44px;
+        }
+
+        & .mat-form-field {
+            font-size: 14px;
+            height: 44px;
+        }
+    }
+}

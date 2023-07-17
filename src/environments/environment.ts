@@ -18,7 +18,8 @@ export const environment = {
     topings: 'topings',
     products: 'products',
     vacancies: 'vacancies',
-    orders: 'orders'
+    orders: 'orders',
+    users: 'users'
   }
 };
 
